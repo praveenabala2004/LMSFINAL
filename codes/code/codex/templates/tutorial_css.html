@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Tutorial</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(to right, #fbd3e9, #c6f0ff);
+        margin: 0;
+      }
+
+      .completed-tag {
+        background-color: #4caf50;
+        color: white;
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 10px;
+      }
+
+      .w3-button {
+        margin: 5px 5px 5px 0;
+      }
+
+      .content-section {
+        display: none;
+        margin-top: 15px;
+      }
+
+      .attendance-status {
+        margin-top: 20px;
+        font-weight: bold;
+        color: green;
+      }
+
+      .timer {
+        font-size: 16px;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .content-section {
+        display: none;
+        margin-top: 20px;
+      }
+
+      .active {
+        display: block;
+      }
+
+      .w3-button {
+        margin-bottom: 10px;
+        background-color: #ff6f91;
+        color: white;
+      }
+
+      .w3-button:hover {
+        background-color: #4fc3f7;
+      }
+
+      .question-section {
+        margin-top: 20px;
+      }
+
+      .question {
+        font-weight: bold;
+      }
+
+      .answer {
+        margin-left: 20px;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffffcc;
+        padding: 10px 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ff6f91;
+      }
+
+      .logo .spark {
+        color: #4fc3f7;
+      }
+
+      .navbar-links {
+        font-size: 18px;
+        color: #555;
+      }
+
+      .header {
+        padding: 20px;
+        background-color: #ffb6c1;
+        color: white;
+        text-align: center;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .section-buttons {
+        margin-top: 20px;
+      }
+
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-left: 4px solid #4fc3f7;
+      }
+    </style>
+    <script>
+      let minutes = 30;
+      let seconds = 0;
+
+      function updateTimer() {
+        if (seconds === 0 && minutes > 0) {
+          minutes--;
+          seconds = 59;
+        } else if (seconds > 0) {
+          seconds--;
+        }
+
+        let time = minutes < 10 ? "0" + minutes : minutes;
+        time += ":" + (seconds < 10 ? "0" + seconds : seconds);
+        document.getElementById("timer").innerHTML = "Time remaining: " + time;
+      }
+      setInterval(updateTimer, 1000);
+
+      function showContent(sectionId) {
+        const sections = document.querySelectorAll(".content-section");
+        sections.forEach((section) => section.classList.remove("active"));
+        document.getElementById(sectionId).classList.add("active");
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation Bar with Logo -->
+    <div class="navbar">
+      <div class="logo"> <span>EduSpark</span> <span class="spark"></span></div>
+      <div class="navbar-links">Student Portal</div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+      <h2>CSS Tutorial</h2>
+      <p>Learn how to style and format web pages using CSS!</p>
+    </div>
+
+    <!-- Timer-->
+    <div class="w3-container w3-right">
+      <div id="timer" class="timer">Time remaining: 30:00</div>
+    </div>
+
+    <!-- Section Buttons -->
+    <div class="w3-container section-buttons">
+      <button class="w3-button w3-teal" onclick="showContent('introContent')">Introduction</button>
+      <button class="w3-button w3-teal" onclick="showContent('syntaxContent')">CSS Syntax</button>
+      <button class="w3-button w3-teal" onclick="showContent('selectorsContent')">
+        CSS Selectors
+      </button>
+      <button class="w3-button w3-teal" onclick="showContent('colorsContent')">CSS Colors</button>
+      <button class="w3-button w3-teal" onclick="showContent('backgroundsContent')">
+        CSS Backgrounds
+      </button>
+      <button class="w3-button w3-teal" onclick="showContent('boxModelContent')">
+        CSS Box Model
+      </button>
+      <button class="w3-button w3-teal" onclick="showContent('textContent')">CSS Text</button>
+      <button class="w3-button w3-teal" onclick="showContent('fontsContent')">CSS Fonts</button>
+      <button class="w3-button w3-teal" onclick="showContent('layoutContent')">CSS Layout</button>
+      <button class="w3-button w3-teal" onclick="showContent('mediaQueriesContent')">
+        Media Queries
+      </button>
+    </div>
+    {% if 'CSS' in completed_courses %}
+    <span class="completed-tag">Completed</span>
+    {% endif %}
+
+    <!-- Content Sections -->
+
+    <!-- Introduction -->
+    <div id="introContent" class="content-section active">
+      <h3>Introduction</h3>
+      <p>This section introduces CSS and explains how it is used to style HTML elements.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: What does CSS stand for?</p>
+        <div class="answer">
+          <p>A: CSS stands for Cascading Style Sheets.</p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  body {
+    background-color: lightblue;
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- CSS Syntax -->
+    <div id="syntaxContent" class="content-section">
+      <h3>CSS Syntax</h3>
+      <p>Learn the basic syntax of CSS including selectors, properties, and values.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: What is the basic structure of a CSS rule?</p>
+        <div class="answer">
+          <p>
+            A: A CSS rule consists of a selector and a declaration block. Example: `selector {
+            property: value; }`.
+          </p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  h1 {
+    color: blue;
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- CSS Selectors -->
+    <div id="selectorsContent" class="content-section">
+      <h3>CSS Selectors</h3>
+      <p>Understand how to target HTML elements using class, ID, group, and pseudo-selectors.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: How do you select an element by its class in CSS?</p>
+        <div class="answer">
+          <p>
+            A: You select an element by its class using a period (`.`) followed by the class name.
+            Example: `.class-name { ... }`.
+          </p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  .example {
+    color: red;
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- CSS Colors -->
+    <div id="colorsContent" class="content-section">
+      <h3>CSS Colors</h3>
+      <p>Explore how to apply colors using names, hex, rgb(), and hsl() in CSS.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: How do you define a color in CSS using a hexadecimal value?</p>
+        <div class="answer">
+          <p>
+            A: You define a color using a hex value by prefixing it with a `#`. Example: `color:
+            #ff5733;`.
+          </p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  p {
+    color: #ff5733;
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- CSS Backgrounds -->
+    <div id="backgroundsContent" class="content-section">
+      <h3>CSS Backgrounds</h3>
+      <p>Learn to style element backgrounds with images, positions, repeats, and more.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: How do you set a background image in CSS?</p>
+        <div class="answer">
+          <p>
+            A: You can set a background image using the `background-image` property. Example:
+            `background-image: url('image.jpg');`.
+          </p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  body {
+    background-image: url('background.jpg');
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- CSS Box Model -->
+    <div id="boxModelContent" class="content-section">
+      <h3>CSS Box Model</h3>
+      <p>This section covers the box model: margins, borders, padding, and content areas.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: What are the four areas of the CSS box model?</p>
+        <div class="answer">
+          <p>A: The four areas of the box model are content, padding, border, and margin.</p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  div {
+    width: 300px;
+    height: 200px;
+    margin: 20px;
+    padding: 10px;
+    border: 5px solid black;
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- CSS Text -->
+    <div id="textContent" class="content-section">
+      <h3>CSS Text</h3>
+      <p>Style text with color, alignment, spacing, shadows, transformations, and more.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: How do you change the color of text in CSS?</p>
+        <div class="answer">
+          <p>
+            A: You can change the color of text using the `color` property. Example: `color: red;`.
+          </p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  p {
+    color: red;
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- CSS Fonts -->
+    <div id="fontsContent" class="content-section">
+      <h3>CSS Fonts</h3>
+      <p>Customize fonts using font-family, size, style, weight, and @font-face.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: How do you change the font family of text in CSS?</p>
+        <div class="answer">
+          <p>
+            A: You can change the font family using the `font-family` property. Example:
+            `font-family: 'Arial', sans-serif;`.
+          </p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  p {
+    font-family: 'Arial', sans-serif;
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- CSS Layout -->
+    <div id="layoutContent" class="content-section">
+      <h3>CSS Layout</h3>
+      <p>Understand different layout techniques such as flexbox, grid, and floats.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: How do you create a flex container in CSS?</p>
+        <div class="answer">
+          <p>
+            A: You create a flex container by setting the `display` property to `flex`. Example:
+            `display: flex;`.
+          </p>
+        </div>
+      </div>
+
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  .container {
+    display: flex;
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+
+    <!-- Media Queries -->
+    <div id="mediaQueriesContent" class="content-section">
+      <h3>Media Queries</h3>
+      <p>Learn how to apply different styles depending on screen sizes or other conditions.</p>
+
+      <div class="question-section">
+        <p class="question">Q1: How do you use media queries in CSS?</p>
+        <div class="answer">
+          <p>
+            A: You can use media queries with the `@media` rule. Example: `@media (max-width: 600px)
+            { ... }`.
+          </p>
+        </div>
+      </div>
+      
+      <h4>Code Example:</h4>
+      <pre>
+&lt;style&gt;
+  @media (max-width: 600px) {
+    body {
+      background-color: lightyellow;
+    }
+  }
+&lt;/style&gt;
+    </pre
+      >
+    </div>
+      <!-- Quiz Button -->
+    <div class="w3-container w3-margin-top">
+      <a href="{{ url_for('index') }}" class="w3-button w3-blue">Take the Quiz</a>
+    </div>
+    <div id="attendanceStatus" class="attendance-status"></div>
+
+    <script>
+      const sectionIds = [
+        "introContent",
+        "syntaxContent",
+        "selectorsContent",
+        "colorsContent",
+        "backgroundsContent",
+        "boxModelContent",
+        "textContent",
+        "fontsContent",
+        "layoutContent",
+        "mediaQueriesContent",
+      ];
+
+      const visited = new Set();
+
+      function showContent(id) {
+        // Hide all sections
+        sectionIds.forEach((sec) => {
+          document.getElementById(sec).style.display = "none";
+        });
+
+        // Show selected section
+        document.getElementById(id).style.display = "block";
+
+        // Mark section as visited
+        visited.add(id);
+
+        // Check for attendance
+        if (visited.size === sectionIds.length) {
+          markAttendance();
+        }
+      }
+
+      function markAttendance() {
+        const status = document.getElementById("attendanceStatus");
+        status.textContent = "Attendance marked for this course!";
+
+        fetch("/mark-attendance", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            course: "CSS",
+            status: "Present",
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => alert(data.message));
+      }
+    </script>
+  </body>
+</html>

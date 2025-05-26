@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificate Generator - EduSpark</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #ccf2ff);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffffcc;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #FF6F91;
+    }
+
+    .logo .spark {
+      color: #4FC3F7;
+    }
+
+    .navbar-links {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .header {
+      padding: 20px;
+      background-color: #9575cd;
+      color: white;
+      text-align: center;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #ffffffcc;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .w3-button {
+      background-color: #FF6F91;
+      color: white;
+    }
+
+    .w3-button:hover {
+      background-color: #4FC3F7;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 10px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar with Logo -->
+  <div class="navbar">
+    <div class="logo"> <span>EduSpark</span> <span class="spark"></span></div>
+    <div class="navbar-links">Student Portal</div>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <h2>Generate Your Certificate</h2>
+    <p>Fill in your details to get a personalized course certificate</p>
+  </div>
+
+  <!-- Form Section -->
+  <div class="form-container">
+    <form method="POST">
+      <label class="w3-text-teal"><b>Your Name</b></label>
+      <input class="w3-input w3-border w3-margin-bottom" name="student_name" required>
+
+      <label class="w3-text-teal"><b>Course Name</b></label>
+      <input class="w3-input w3-border w3-margin-bottom" name="course_name" required>
+
+      <button class="w3-button w3-margin-top">Generate Certificate</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('home_page') }}" class="w3-button">Back to Home</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 EduSpark. All rights reserved.
+  </div>
+
+</body>
+</html>

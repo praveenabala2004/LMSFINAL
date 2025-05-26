@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduSpark - Student Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:300,400,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fbd3e9, #c6f0ff); /* Pale pink to light blue */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .navbar {
+      width: 95%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 20px 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+    }
+
+    .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+    }
+
+    .logo span.spark {
+      font-size: 20px;
+      animation: twinkle 1.5s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 1; transform: rotate(0deg); }
+      to { opacity: 0.6; transform: rotate(15deg); }
+    }
+
+    .navbar-links {
+      font-size: 16px;
+    }
+
+    .content {
+      animation: fadeSlideIn 1.2s ease forwards;
+      opacity: 0;
+      transform: translateY(40px);
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      padding: 40px 30px;
+      max-width: 700px;
+      width: 90%;
+      margin: 50px auto;
+      text-align: center;
+      color: #333;
+    }
+
+    @keyframes fadeSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content h2 {
+      margin-bottom: 15px;
+      font-size: 28px;
+      color: #222;
+    }
+
+    .content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #444;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .btn-group a {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .btn-group a:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn-logout {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 22px;
+      }
+      .content h2 {
+        font-size: 24px;
+      }
+      .btn-group a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar with Logo -->
+  <div class="navbar">
+    <div class="logo"> <span>EduSpark</span> <span class="spark"></span></div>
+     <div class="navbar-links">
+       Student Portal
+     </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h2>Hello{% if student %}, {{ student.first_name }}{% endif %}!</h2>
+    <p>This is your student hub where you can view your dashboard, browse courses, or manage your profile.</p>
+
+    <div class="btn-group">
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+      <a href="{{ url_for('chat') }}">Chatbot</a>
+      <a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+      <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate - EduSpark</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffe6f0, #ccf2ff);
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffffcc;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #FF6F91;
+    }
+    .logo .spark {
+      color: #4FC3F7;
+    }
+    .navbar-links {
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* Certificate Styling */
+    .certificate-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    .certificate {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 40px;
+      width: 70%;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      border: 2px solid #4CAF50;
+    }
+
+    .certificate-header {
+      font-size: 36px;
+      font-weight: bold;
+      color: #4CAF50;
+      margin-bottom: 20px;
+    }
+
+    .certificate-content {
+      margin: 20px 0;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .certificate-name {
+      font-size: 30px;
+      font-weight: 600;
+      color: #FF6F91;
+      text-transform: uppercase;
+    }
+
+    .certificate-course {
+      font-size: 28px;
+      color: #4CAF50;
+      margin: 20px 0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 10px;
+      color: #777;
+    }
+
+    .w3-button {
+      background-color: #FF6F91;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .w3-button:hover {
+      background-color: #4FC3F7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+       <span>EduSpark</span> <span class="spark"></span>
+    </div>
+    <div class="navbar-links">
+      Student Portal
+    </div>
+  </div>
+
+  <!-- Certificate Section -->
+  <div class="certificate-container">
+    <div class="certificate">
+
+      <div class="certificate-header">Certificate of Completion by EduSpark</div>
+      <div class="certificate-content">
+        This is to certify that
+        <div class="certificate-name">{{ student_name }}</div>
+        has successfully completed the
+        <div class="certificate-course">{{ course_name }}</div>
+        course.
+      </div>
+      <div class="footer">
+        <p><i>Presented by EduSpark Student Portal</i></p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

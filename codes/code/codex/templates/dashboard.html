@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduSpark Student Dashboard</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(to right, #fbd3e9, #c6f0ff);
+        margin: 0;
+      }
+
+      .navbar {
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .logo {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #4a148c;
+      }
+
+      .navbar-links {
+        font-size: 1rem;
+        color: #444;
+      }
+
+      .w3-sidebar {
+        width: 250px;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        z-index: 3;
+        padding-top: 30px;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .main-content {
+        margin-left: 260px;
+        padding: 30px;
+      }
+
+      .top-bar {
+        background-color: #4a148c;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .top-bar a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .top-bar a:hover {
+        text-decoration: underline;
+      }
+
+      .w3-card-4 {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .w3-container {
+        padding: 20px;
+      }
+
+      .w3-card-4 h4 {
+        margin: 0;
+      }
+
+      .w3-bar-item {
+        font-weight: 500;
+      }
+
+      .w3-bar-item:hover {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Navbar -->
+    <div class="navbar">
+      <div class="logo"> <span>EduSpark</span> </div>
+      <div class="navbar-links">Student Portal</div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-bar-block">
+      <h3 class="w3-bar-item"></h3>
+      <h3 class="w3-bar-item">Dashboard</h3>
+      <a href="{{ url_for('home_pages') }}" class="w3-bar-item w3-button">Home</a>
+      <a href="{{ url_for('dashboard') }}" class="w3-bar-item w3-button">Profile</a>
+      <a href="{{ url_for('courses') }}" class="w3-bar-item w3-button">Courses</a>
+      <a href="{{ url_for('puzzle') }}" class="w3-bar-item w3-button">Puzzle</a>
+      <a href="{{ url_for('logout') }}" class="w3-bar-item w3-button">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <span>Welcome, {{ student.first_name }} {{ student.last_name }}</span>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+
+      <!-- Student Info -->
+      <div class="w3-card-4 w3-margin-top">
+        <div class="w3-container w3-deep-purple">
+          <h4 class="w3-text-white">Student Information</h4>
+        </div>
+        <div class="w3-container">
+          <p><strong>Email:</strong> {{ student.email }}</p>
+          <p><strong>Phone:</strong> {{ student.phone }}</p>
+          <p><strong>ID Number:</strong> {{ student.id_number }}</p>
+          <p><strong>School:</strong> {{ student.school_name }}</p>
+          <p><strong>Standard:</strong> {{ student.standard }}</p>
+        </div>
+      </div>
+
+     
+
+      <!-- Attendance Tracking -->
+      <div class="w3-card-4 w3-margin-top">
+        <div class="w3-container w3-green">
+          <h4 class="w3-text-white">Attendance Tracking</h4>
+        </div>
+        <div class="w3-container">
+          <table class="w3-table-all w3-hoverable w3-small">
+            <thead>
+              <tr class="w3-light-grey">
+                <th>Date</th>
+                <th>Subject</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for record in attendance_records %}
+              <tr>
+                <td>{{ record.date }}</td>
+                <td>{{ record.subject }}</td>
+                <td>
+                  {% if record.status == 'Present' %}
+                  <span class="w3-tag w3-green">Present</span>
+                  {% elif record.status == 'Absent' %}
+                  <span class="w3-tag w3-red">Absent</span>
+                  {% else %}
+                  <span class="w3-tag w3-yellow">Late</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% if not attendance_records %}
+          <p class="w3-text-grey">No attendance records available.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

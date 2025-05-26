@@ -1,0 +1,34 @@
+let minutes = 30;
+    let seconds = 0;
+
+    function updateTimer() {
+      if (minutes === 0 && seconds === 0) {
+        document.getElementById("timer").innerHTML = "Time's up!";
+        return;
+      }
+
+      if (seconds === 0) {
+        minutes--;
+        seconds = 59;
+      } else {
+        seconds--;
+      }
+
+      let time = (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+      document.getElementById("timer").innerHTML = "Time remaining: " + time;
+    }
+
+    function showContent(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    });
+
+    
+    
+    

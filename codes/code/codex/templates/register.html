@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration – EduSpark</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #fbd3e9, #c6f0ff);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #4a148c;
+    }
+
+    .navbar-links {
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .registration-box {
+      background-color: #fff;
+      padding: 35px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 550px;
+    }
+
+    .registration-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .form-control {
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background-color: #4a148c;
+      border: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #6a1b9a;
+    }
+
+    .form-text a {
+      color: #4a148c;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .form-text a:hover {
+      text-decoration: underline;
+    }
+
+    .flash-message {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      background: transparent;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar with Logo -->
+  <div class="navbar">
+    <div class="logo">✨ <span>EduSpark</span> ✨</div>
+    <div class="navbar-links">
+      Student Portal
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="registration-box">
+      <h2>Student Registration</h2>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+          <div class="flash-message">{{ msg }}</div>
+        {% endfor %}
+      {% endwith %}
+
+      <form method="post">
+        <div class="mb-3">
+          <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+        </div>
+        <div class="mb-3">
+          <input type="text" name="id_number" class="form-control" placeholder="ID Number" required>
+        </div>
+        <div class="mb-3">
+          <input type="text" name="school_name" class="form-control" placeholder="School Name" required>
+        </div>
+        <div class="mb-3">
+          <select name="standard" class="form-control" required>
+            <option value="">Select Standard</option>
+            <option value="11th">11th</option>
+            <option value="12th">12th</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+
+      <p class="form-text mt-3 text-center">
+        Already registered? <a href="{{ url_for('login') }}">Login here</a>.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2025 EduSpark. All rights reserved.</p>
+  </div>
+
+</body>
+</html>

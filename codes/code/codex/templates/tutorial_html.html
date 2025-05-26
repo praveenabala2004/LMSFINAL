@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduSpark Course Tracker</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(to right, #fbd3e9, #c6f0ff);
+        margin: 0;
+      }
+      
+
+  .completed-tag {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 10px;
+  }
+
+
+      .w3-button {
+        margin: 5px 5px 5px 0;
+      }
+
+      .content-section {
+        display: none;
+        margin-top: 15px;
+      }
+
+      .attendance-status {
+        margin-top: 20px;
+        font-weight: bold;
+        color: green;
+      }
+      
+    .timer {
+      font-size: 16px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .content-section {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .w3-button {
+      margin-bottom: 10px;
+      background-color: #FF6F91;
+      color: white;
+    }
+
+    .w3-button:hover {
+      background-color: #4FC3F7;
+    }
+
+    .question-section {
+      margin-top: 20px;
+    }
+
+    .question {
+      font-weight: bold;
+    }
+
+    .answer {
+      margin-left: 20px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffffcc;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #FF6F91;
+    }
+
+    .logo .spark {
+      color: #4FC3F7;
+    }
+
+    .navbar-links {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .header {
+      padding: 20px;
+      background-color: #ffb6c1;
+      color: white;
+      text-align: center;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .section-buttons {
+      margin-top: 20px;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-left: 4px solid #4FC3F7;
+    }
+    </style>
+    <script>
+    let minutes = 30;
+    let seconds = 0;
+
+    function updateTimer() {
+      if (seconds === 0 && minutes > 0) {
+        minutes--;
+        seconds = 59;
+      } else if (seconds > 0) {
+        seconds--;
+      }
+
+      let time = minutes < 10 ? '0' + minutes : minutes;
+      time += ":" + (seconds < 10 ? '0' + seconds : seconds);
+      document.getElementById("timer").innerHTML = "Time remaining: " + time;
+    }
+    setInterval(updateTimer, 1000);
+
+    function showContent(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+  </head>
+  <body>
+    <div class="navbar">
+    <div class="logo"><span>EduSpark</span> <span class="spark"></span></div>
+    <div class="navbar-links">Student Portal</div>
+  </div>
+
+  <!-- Header -->
+ <div class="header">
+    <h2>HTML Tutorial</h2>
+    <p>Learn how to structure web pages with HTML!</p>
+  </div>
+  <!-- Timer -->
+  <div class="w3-container w3-right">
+    <div id="timer" class="timer">Time remaining: 30:00</div>
+  </div>
+
+
+
+    <!-- Buttons for each content section -->
+     <div class="w3-container section-buttons">
+    <button class="w3-button w3-teal" onclick="showContent('introContent')">Introduction</button>
+    <button class="w3-button w3-teal" onclick="showContent('syntaxContent')">
+      HTML Basic Syntax
+    </button>
+    <button class="w3-button w3-teal" onclick="showContent('elementsContent')">
+      HTML Elements
+    </button>
+    <button class="w3-button w3-teal" onclick="showContent('attributesContent')">
+      HTML Attributes
+    </button>
+    <button class="w3-button w3-teal" onclick="showContent('formsContent')">HTML Forms</button>
+    <button class="w3-button w3-teal" onclick="showContent('linksContent')">HTML Links</button>
+    <button class="w3-button w3-teal" onclick="showContent('imagesContent')">HTML Images</button>
+    <button class="w3-button w3-teal" onclick="showContent('tablesContent')">HTML Tables</button>
+</div>
+    {% if 'HTML' in completed_courses %}
+    <span class="completed-tag">Completed</span>
+    {% endif %}
+    <!-- Content Sections -->
+    <div id="introContent" class="content-section active">
+      <h3>Introduction</h3>
+      <p>HTML (HyperText Markup Language) is the standard language for creating web pages. It structures the content on the web and is the foundation of web development.</p>
+      <p>HTML uses a system of tags to define elements on a page, such as headings, paragraphs, links, and images. Understanding HTML is the first step towards becoming a web developer.</p>
+      
+      <!-- Sample Questions and Answers -->
+      <div class="question-section">
+        <p class="question">Q1: What does HTML stand for?</p>
+        <div class="answer">
+          <p> HTML stands for HyperText Markup Language.</p>
+          <p>HTML is the standard markup language for creating Web pages.</p>
+          <P>HTML describes the structure of a Web page<br><br>
+HTML consists of a series of elements.<br><br>
+HTML elements tell the browser how to display the content.<br><br>
+HTML elements label pieces of content such as "this is a heading", "this is a paragraph", "this is a link", etc.</P>
+        </div>
+        <p></p>
+      </div>
+    </div>
+    
+
+    <div id="syntaxContent" class="content-section">
+      <h3>HTML Basic Syntax</h3>
+      <p>HTML documents have a nested structure. The basic structure includes:</p>
+      <pre>
+        <code>
+          &lt;!DOCTYPE html&gt;
+          &lt;html&gt;
+            &lt;head&gt;
+              &lt;title&gt;Page Title&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+              &lt;h1&gt;This is a Heading&lt;/h1&gt;
+              &lt;p&gt;This is a paragraph.&lt;/p&gt;
+            &lt;/body&gt;
+          &lt;/html&gt;
+        </code>
+      </pre>
+      
+      <p><!-- Sample Questions and Answers -->
+      <div class="question-section">
+        <p class="question">Q1: What is the purpose of the `<!DOCTYPE html>` declaration?</p>
+        <div class="answer">
+          <p> It defines the document type and version of HTML being used.</p>
+           This structure defines the document type, the HTML document itself, and the head and body sections.<br><br>
+      The<u> !DOCTYPE html</u> declaration defines that this document is an HTML5 document.<br><br>
+The <u>html</u>  element is the root element of an HTML page.<br><br>
+The<u>head</head></u> element contains meta information about the HTML page.<br><br>
+The<u>title</u> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab).<br><br>
+The <u>body</u> element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.
+The <u>h1</u> element defines a large heading.<br><br>
+The <u>p</u> element defines a paragraph.<br><br>
+      </p>
+        </div>
+      </div>
+    </div>
+       
+      
+      
+
+    <div id="elementsContent" class="content-section">
+      <h3>HTML Elements</h3>
+      <p>HTML elements are the building blocks of web pages. Elements are used to define parts of a webpage such as paragraphs, links, and images. Most elements have opening and closing tags.</p>
+      <p>For example, a paragraph is created using the `<p>` tag, and an image is created using the `<img>` tag.</p>
+      
+      <!-- Example -->
+      <pre>
+        <code>
+          &lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+          &lt;img src="image.jpg" alt="Image Description"&gt;
+
+          &lt;h1&gt;This is Heading.&lt;/h1&gt;
+
+          &lt;br&gt;This is break the line.&lt;br&gt;
+        </code>
+      </pre>
+      
+      <!-- Sample Questions and Answers -->
+      <div class="question-section">
+        <p class="question">Q1: Which tag is used for a paragraph?</p>
+        <div class="answer">
+          <p> The <u>p</u> tag is used to define a paragraph in HTML.<br><br>
+             The <u>h1</u> tag is used to define a heading in HTML.<br><br>
+              The <u>br</u> tag is used to define a break line in HTML.<br><br>
+               The <u>img</u> tag is used to define a picture in HTML.<br><br>
+          </p>
+          
+          
+        </div>
+        <h4 ><b>NESTED ELEMENTS</b></h4>
+            <p>HTML elements can be nested (this means that elements can contain other elements).<br><br>
+
+          All HTML documents consist of nested HTML elements</p>
+      </div>
+    </div>
+
+    <div id="attributesContent" class="content-section">
+      <h3>HTML Attributes</h3>
+      <p>Attributes provide additional information about HTML elements. They are always written in the opening tag and usually consist of a name and a value pair.</p>
+      <p>Common attributes include:</p>
+      <ul>
+        <li><strong>href</strong>: Specifies the URL for links.</li>
+        <li><strong>src</strong>: Specifies the source for images.</li>
+        <li><strong>alt</strong>: Provides alternative text for images.</li>
+        <li><strong>class</strong>: Specifies the class of an element.</li>
+      </ul>
+      
+      <!-- Sample Questions and Answers -->
+      <div class="question-section">
+        <p class="question">Q1: What is the purpose of the `src` attribute?</p>
+        <div class="answer">
+          <p>A: The `src` attribute specifies the URL of the image or media file in tags.<br><br>
+             All HTML elements can have attributes.<br><br>
+Attributes provide additional information about elements.<br><br>
+Attributes are always specified in the start tag.<br><br>
+Attributes usually come in name/value pairs like: name="value".<br><br>
+            
+            
+          </p>
+        </div>
+        
+<h3>The style Attribute</h3>
+<p>The style attribute is used to add styles to an element, such as color, font, size, and more.</p>
+
+<h3>The lang Attribute</h3>
+<p>You should always include the lang attribute inside the <html> tag, to declare the language of the Web page. This is meant to assist search engines and browsers.
+    </p>
+    <h3>The title Attribute</h3>
+    <p>
+The title attribute defines some extra information about an element.</p>
+  </div>
+    </div>
+
+    <div id="formsContent" class="content-section">
+      <h3>HTML Forms</h3>
+      <p>HTML forms allow users to input data. Forms can contain various elements like text fields, checkboxes, and submit buttons.</p>
+      <pre>
+        <code>
+          &lt;form action="submit_form.php"&gt;
+            &lt;input type="text" name="name"&gt;
+            &lt;input type="submit" value="Submit"&gt;
+          &lt;/form&gt;
+        </code>
+      </pre>
+      
+      <!-- Sample Questions and Answers -->
+      <div class="question-section">
+        <p class="question">Q1: Which tag is used to create an HTML form?</p>
+        <div class="answer">
+          <p>A: The `<form>` tag is used to create an HTML form.</p>
+        </div>
+        <h3>The Action Attribute</h3>
+        <p>
+The action attribute defines the action to be performed when the form is submitted.<br><br>
+
+Usually, the form data is sent to a file on the server when the user clicks on the submit button.<br><br></p>
+<h3>The Method Attribute</h3>
+        <p>
+The method attribute specifies the HTTP method to be used when submitting the form data.
+
+The form-data can be sent as URL variables (with method="get") or as HTTP post transaction (with method="post").
+
+The default HTTP method when submitting form data is GET. 
+
+</p>
+
+     
+      </div>
+    </div>
+
+    <div id="linksContent" class="content-section">
+      <h3>HTML Links</h3>
+      <p>Links are created using the `<a>` tag, and the destination URL is provided in the `href` attribute.<br><br></p>
+      <p> HTML links are hyperlinks.<br><br>
+
+You can click on a link and jump to another document.<br><br>
+
+When you move the mouse over a link, the mouse arrow will turn into a little hand.<br><br></p>
+      <pre>
+        <code>
+          &lt;a href="https://www.example.com"&gt;Click Here&lt;/a&gt;
+        </code>
+      </pre>
+      
+      <!-- Sample Questions and Answers -->
+      <div class="question-section">
+        <p class="question">Q1: How do you create a hyperlink in HTML?</p>
+        <div class="answer">
+          <p>A: You use the `<a>` tag with the `href` attribute to create hyperlinks. Example: `<a href="https://www.example.com">Click here</a>`.</p>
+        </div>
+        <h3><b>HTML Links - The target Attribute</b></h3>
+        <p>By default, the linked page will be displayed in the current browser window. To change this, you must specify another target for the link.
+
+The target attribute specifies where to open the linked document.<br><br>
+
+The target attribute can have one of the following values:<br><br>
+
+_self - Default. Opens the document in the same window/tab as it was clicked<br><br>
+_blank - Opens the document in a new window or tab<br><br>
+_parent - Opens the document in the parent frame<br><br>
+_top - Opens the document in the full body of the window</p>
+      </div>
+    </div>
+
+    <div id="imagesContent" class="content-section">
+      <h3>HTML Images</h3>
+      <p>Images are added to HTML using the `<img>` tag. The `src` attribute specifies the path to the image file, and the `alt` attribute provides alternative text for accessibility.</p>
+      <pre>
+        <code>
+          &lt;img src="image.jpg" alt="A descriptive text"&gt;
+        </code>
+      </pre>
+      
+      <!-- Sample Questions and Answers -->
+      <div class="question-section">
+        <p class="question">Q1: Which tag is used to display an image?</p>
+        <div class="answer">
+          <p>A: The `<img>` tag is used to display images in HTML.</p>
+        </div>
+        <h3>The src Attribute</h3>
+        <p>
+The required src attribute specifies the path (URL) to the image.<br>
+
+<b>Note:</b> When a web page loads, it is the browser, at that moment, that gets the image from a web server and inserts it into the page. Therefore, make sure that the image actually stays in the same spot in relation to the web page, otherwise your visitors will get a broken link icon. The broken link icon and the alt text are shown if the browser cannot find the image.<br><br>
+       <h3> The alt Attribute</h3>
+      <p>
+The required alt attribute provides an alternate text for an image, if the user for some reason cannot view it (because of slow connection, an error in the src attribute, or if the user uses a screen reader).</p> </div>
+    </div>
+
+    <div id="tablesContent" class="content-section">
+      
+      <h3>HTML Tables</h3>
+     
+      <p>HTML tables are used to display data in a structured format. A table consists of rows and columns defined by the `<table>`, `<tr>`, `<th>`, and `<td>` tags.</p>
+      <pre>
+        <code>
+          &lt;table&gt;
+            &lt;tr&gt;
+              &lt;th&gt;Header 1&lt;/th&gt;
+              &lt;th&gt;Header 2&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Data 1&lt;/td&gt;
+              &lt;td&gt;Data 2&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/table&gt;
+        </code>
+      </pre>
+      <!-- Sample Questions and Answers -->
+      <div class="question-section">
+        <p class="question">Q1: What tag is used to create a table?</p>
+        <div class="answer">
+          <p>A: The `<table>` tag is used to create a table in HTML.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Quiz Button -->  
+  <div class="w3-container w3-margin-top">
+    <a href="{{ url_for('index') }}" class="w3-button w3-blue">Take the Quiz</a>
+  </div>
+
+    <!-- Attendance Status -->
+    <div id="attendanceStatus" class="attendance-status"></div>
+
+    <script>
+      const sectionIds = [
+        "introContent",
+        "syntaxContent",
+        "elementsContent",
+        "attributesContent",
+        "formsContent",
+        "linksContent",
+        "imagesContent",
+        "tablesContent",
+      ];
+
+      const visited = new Set();
+
+      function showContent(id) {
+        // Hide all sections
+        sectionIds.forEach((sec) => {
+          document.getElementById(sec).style.display = "none";
+        });
+
+        // Show selected section
+        document.getElementById(id).style.display = "block";
+
+        // Mark section as visited
+        visited.add(id);
+
+        // Check for attendance
+        if (visited.size === sectionIds.length) {
+          markAttendance();
+        }
+      }
+
+      function markAttendance() {
+        const status = document.getElementById("attendanceStatus");
+        status.textContent = "Attendance marked for this course!";
+
+        fetch('/mark-attendance', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    course: 'HTML',
+    status: 'Present'
+  })
+})
+.then(res => res.json())
+.then(data => alert(data.message))
+
+      }
+    </script>
+  </body>
+</html>

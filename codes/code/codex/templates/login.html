@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduSpark – Student Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #fbd3e9, #c6f0ff); /* Pale pink to light blue */
+      margin: 0;
+      padding-top: 80px; /* space for navbar */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span.spark {
+      font-size: 18px;
+      animation: twinkle 1.5s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 1; transform: rotate(0deg); }
+      to { opacity: 0.6; transform: rotate(15deg); }
+    }
+
+    .navbar-links {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .form-control {
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 16px;
+    }
+
+    .btn-login {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      border-radius: 8px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background: linear-gradient(to right, #5b0ecb, #1e5bfd);
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-text {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-text a {
+      color: #2575fc;
+      text-decoration: none;
+    }
+
+    .form-text a:hover {
+      text-decoration: underline;
+    }
+
+    .flash-message {
+      color: #e74c3c;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    @media (max-width: 480px) {
+      .login-box {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar with Logo -->
+  <div class="navbar">
+    <div class="logo"> <span>EduSpark</span> <span class="spark"></span></div>
+    <div class="navbar-links">
+      Student Portal
+    </div>
+  </div>
+
+  <!-- Login Form -->
+  <div class="login-box">
+    <h2>Student Login</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, msg in messages %}
+        <div class="flash-message">{{ msg }}</div>
+      {% endfor %}
+    {% endwith %}
+
+    <form method="post">
+      <div class="mb-3">
+        <input type="email" name="email" class="form-control" placeholder="Email" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn btn-login">Login</button>
+    </form>
+<div class="text-end mb-3">
+  <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+</div>
+    <div class="form-text">
+      Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 EduSpark. All rights reserved.
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

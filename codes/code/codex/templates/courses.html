@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduSpark Courses</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fbd3e9, #c6f0ff);
+      margin: 0;
+    }
+
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #4a148c;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .w3-bar-item:hover {
+      background-color: #ddd !important;
+    }
+
+    .course-card {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .course-card h3 {
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .w3-button {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .w3-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div class="navbar">
+    <div class="logo">EduSpark</div>
+    <div class="w3-bar nav-links">
+      <a href="{{ url_for('home_page') }}" class="w3-bar-item w3-button">Home</a>
+
+      <div class="w3-dropdown-hover">
+        <button class="w3-button">Tutorials <i class="fa fa-caret-down"></i></button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+          <a href="{{ url_for('tutorial_html') }}" class="w3-bar-item w3-button">HTML</a>
+          <a href="{{ url_for('tutorial_css') }}" class="w3-bar-item w3-button">CSS</a>
+          <a href="{{ url_for('tutorial_js') }}" class="w3-bar-item w3-button">JavaScript</a>
+        </div>
+      </div>
+
+      <div class="w3-dropdown-hover">
+        <button class="w3-button">Exercises <i class="fa fa-caret-down"></i></button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+          <a href="index" class="w3-bar-item w3-button">Quiz</a>
+          <a href="projects" class="w3-bar-item w3-button">Projects</a>
+        </div>
+      </div>
+
+      <div class="w3-dropdown-hover">
+        <button class="w3-button">Services <i class="fa fa-caret-down"></i></button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+          <a href="services/hosting" class="w3-bar-item w3-button">Hosting</a>
+          
+        </div>
+      </div>
+
+      <a href="{{ url_for('dashboard') }}" class="w3-bar-item w3-button w3-right">Dashboard</a>
+      <a href="{{ url_for('logout') }}" class="w3-bar-item w3-button w3-right">Logout</a>
+    </div>
+  </div>
+
+  <!-- Page Heading -->
+  <div class="w3-container w3-padding-32 w3-center">
+    <h2 class="w3-text-teal">Explore Our Courses</h2>
+    <p class="w3-text-grey">Choose a subject and begin your learning journey with EduSpark</p>
+  </div>
+
+  <!-- Course Selection Card -->
+  <div class="course-card w3-center">
+    <h3>Choose a Course</h3>
+    <div class="w3-bar w3-center">
+      <a href="{{ url_for('tutorial_html') }}" class="w3-button w3-blue w3-margin w3-round-large">HTML</a>
+      <a href="{{ url_for('tutorial_css') }}" class="w3-button w3-green w3-margin w3-round-large">CSS</a>
+      <a href="{{ url_for('tutorial_js') }}" class="w3-button w3-red w3-margin w3-round-large">JAVA SCRIPT</a>
+    </div>
+  </div>
+
+</body>
+</html>

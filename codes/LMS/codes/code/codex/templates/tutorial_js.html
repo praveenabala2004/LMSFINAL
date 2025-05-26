@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Tutorial</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #ccf2ff);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffffcc;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #FF6F91;
+    }
+
+    .logo .spark {
+      color: #4FC3F7;
+    }
+
+    .navbar-links {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .header {
+      padding: 20px;
+      background-color: #ffb6c1;
+      color: white;
+      text-align: center;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .timer {
+      font-size: 16px;
+      padding: 10px;
+      margin-left: 370px;
+      color: black;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .content-section {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+    #nextButton{
+      width:150px;
+      margin-left: 400px;
+      }
+
+    .w3-button {
+      margin: 8px 4px 8px 0;
+      background-color: #FF6F91;
+      color: white;
+    }
+
+    .w3-button:hover {
+      background-color: #4FC3F7;
+    }
+
+    .active-button {
+      background-color: #4FC3F7 !important;
+    }
+
+    .question-section {
+      margin-top: 20px;
+    }
+
+    .question {
+      font-weight: bold;
+    }
+
+    .answer {
+      margin-left: 20px;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+   
+  
+
+  </style>
+  <!-- Add this HTML for buttons and timer -->
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.content-section');
+    const navButtons = document.querySelectorAll('.section-buttons .w3-button');
+    const nextBtn = document.getElementById('nextButton');
+    const timerDisplay = document.getElementById('timer');
+    let currentSectionIndex = 0;
+    let timerDuration = 10; // seconds
+    let countdown;
+
+    function updateTimerDisplay(seconds) {
+      let mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+      let secs = String(seconds % 60).padStart(2, '0');
+      timerDisplay.textContent = `Time Remaining: ${mins}:${secs}`;
+    }
+
+    function startTimer() {
+      clearInterval(countdown);
+      let timeLeft = timerDuration;
+      updateTimerDisplay(timeLeft);
+      nextBtn.style.display = 'none';
+      nextBtn.disabled = true;
+
+      countdown = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay(timeLeft);
+
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          nextBtn.style.display = 'inline-block';
+          nextBtn.disabled = false;
+          enableNavButtons();
+        }
+      }, 1000);
+    }
+
+    function enableNavButtons() {
+      navButtons.forEach((btn, i) => {
+        if (i <= currentSectionIndex + 1) {
+          btn.disabled = false;
+        }
+      });
+    }
+
+    function showSection(index) {
+      sections.forEach((sec, i) => {
+        sec.style.display = i === index ? 'block' : 'none';
+      });
+      currentSectionIndex = index;
+      startTimer();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showNextSection() {
+      if (currentSectionIndex < sections.length - 1) {
+        showSection(currentSectionIndex + 1);
+      } else {
+        nextBtn.style.display = 'none';
+        timerDisplay.textContent = "All sections completed.";
+      }
+    }
+
+    // Setup nav button click handlers
+    navButtons.forEach((btn, index) => {
+      btn.disabled = index !== 0;
+      btn.addEventListener('click', () => showSection(index));
+    });
+
+    nextBtn.addEventListener('click', showNextSection);
+
+    // Start with the first section
+    showSection(0);
+  });
+</script>
+
+
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo"> <span>EduSpark</span> <span class="spark"></span></div>
+    <div class="navbar-links">Student Portal</div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="header">
+    <h2>JavaScript Tutorial</h2>
+    <p>Learn how to make your web pages interactive and dynamic!</p>
+  </header>
+
+  <!-- Timer -->
+  <div class="w3-container w3-right">
+    <div id="timer" class="timer"></div>
+<button id="nextButton"class="w3-button" disabled style="display: none;">Next</button>
+  </div>
+
+  
+
+  <!-- Buttons for Sections -->
+  <!-- Buttons for Sections -->
+<div class="w3-container section-buttons">
+  <button class="w3-button w3-teal">Introduction</button>
+  <button class="w3-button w3-teal">JS Syntax</button>
+  <button class="w3-button w3-teal">Variables</button>
+  <button class="w3-button w3-teal">Data Types</button>
+  <button class="w3-button w3-teal">Operators</button>
+  <button class="w3-button w3-teal">Functions</button>
+  <button class="w3-button w3-teal">Events</button>
+  <button class="w3-button w3-teal">DOM Manipulation</button>
+  <button class="w3-button w3-teal">Loops</button>
+  <button class="w3-button w3-teal">Arrays</button>
+</div>
+
+
+  <!-- Content Sections -->
+
+  <!-- Introduction -->
+  <div class="w3-container">
+    <div id="introContent" class="content-section active">
+      <h3>Introduction</h3>
+      <p>JavaScript is the programming language of the web. Learn how it can make websites interactive.<br><br>
+        JavaScript is the world's most popular programming language.<br><br>
+        JavaScript is easy to learn.<br><br>
+        This tutorial will teach you JavaScript from basic to advanced.
+      </p>
+
+      <div class="question-section">
+        <p class="question">Q1: What is JavaScript used for?</p>
+        <div class="answer">
+          <p>A: JavaScript is used to create interactive and dynamic web pages.<br><br>
+            It can be used for event handling, DOM manipulation.<br><br>
+            <u>HTML</u> to define the content of web pages.<br><br>
+            <u>CSS</u> to specify the layout of web pages.<br><br>
+            <u>JavaScript</u> to program the behavior of web pages.
+          </p>
+        </div>
+      </div>
+
+      <div class="question-section">
+        <p class="question">This tutorial covers every version of JavaScript:</p>
+        <div class="answer">
+          <p>A: The Original JavaScript ES1 ES2 ES3 (1997-1999).<br><br>
+            The First Main Revision ES5 (2009).<br><br>
+            The Second Revision ES6 (2015).<br><br>
+            The Yearly Additions (2016, 2017 ... 2021, 2022).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Syntax -->
+  
+  <div id="syntaxContent" class="content-section" >
+  <h3>JS Syntax</h3>
+  <p>JavaScript syntax defines how programs are written. It includes rules for writing variables, functions, and control structures.</p>
+  
+  <p><strong>Example Program 1:</strong></p>
+  <pre><code>
+function greetUser() {
+  let user = "John";
+  console.log("Hello, " + user + "!");
+}
+
+greetUser();
+  </code></pre>
+
+  <p><strong>Explanation:</strong> This program defines a function called <code>greetUser</code> which declares a variable <code>user</code> with the value "John". Inside the function, <code>console.log()</code> outputs a greeting message concatenating the string "Hello, " with the value of <code>user</code>. When <code>greetUser()</code> is called, it runs this code and prints "Hello, John!" to the console. This example demonstrates how to declare a function, create a variable using <code>let</code>, and output text to the console.</p>
+  
+  <p><strong>Example Program 2:</strong></p>
+  <pre><code>
+let age = 25;
+if (age >= 18) {
+  console.log("You are an adult.");
+} else {
+  console.log("You are a minor.");
+}
+  </code></pre>
+
+  <p><strong>Explanation:</strong> In this example, a variable <code>age</code> is declared with the value 25. The <code>if</code> statement checks whether <code>age</code> is 18 or greater. If true, it prints "You are an adult." to the console; otherwise, it prints "You are a minor." This example shows how to use conditional statements and comparison operators in JavaScript syntax.</p>
+</div>
+
+<div id="variablesContent" class="content-section">
+  <h3>Variables</h3>
+  <p>Variables store data that can be used and changed in a program.</p>
+
+  <p><strong>Example Program 1:</strong></p>
+  <pre><code>
+let city = "Paris";
+const country = "France";
+var population = 2000000;
+
+console.log(city + " is in " + country + " with a population of " + population);
+  </code></pre>
+  <p><em>Explanation:</em>  
+  Here, <code>let</code> declares a variable <code>city</code> that can be reassigned.  
+  <code>const</code> declares a constant <code>country</code> that cannot be changed later.  
+  <code>var</code> declares a variable <code>population</code> with function scope (older style).  
+  The <code>console.log</code> prints a sentence combining these variables using string concatenation.</p>
+
+  <p><strong>Example Program 2:</strong></p>
+  <pre><code>
+let temperature = 25;  // temperature in Celsius
+temperature = 30;      // change temperature value
+
+const PI = 3.14159;
+// PI = 3.14;        // This will cause an error because PI is a constant
+
+console.log("Current temperature is " + temperature + "°C");
+console.log("Value of PI is " + PI);
+  </code></pre>
+  <p><em>Explanation:</em>  
+  This program shows how a variable declared with <code>let</code> (<code>temperature</code>) can be reassigned later.  
+  The constant <code>PI</code> holds a fixed value and cannot be reassigned.  
+  Attempting to change a <code>const</code> variable will throw an error.  
+  The <code>console.log</code> statements display the current temperature and the value of PI.</p>
+</div>
+
+<!-- 3. Data Types Section -->
+<div id="datatypesContent" class="content-section" >
+  <h3>Data Types</h3>
+  <p>JavaScript has dynamic types. You don't need to specify the type of a variable.</p>
+  <p>Primitive data types include:</p>
+  <ul>
+    <li>String</li>
+    <li>Number</li>
+    <li>Boolean</li>
+    <li>Null</li>
+    <li>Undefined</li>
+    <li>Symbol</li>
+    <li>BigInt</li>
+  </ul>
+
+  <p><strong>Example 1:</strong></p>
+  <pre><code>
+let age = 30;           // Number
+let name = "Alice";     // String
+let isStudent = true;   // Boolean
+let unknown = null;     // Null
+let x;                  // Undefined
+  </code></pre>
+  <p><strong>Explanation:</strong> Variables are declared without specifying their types. JavaScript dynamically assigns the data type based on the value. <code>age</code> is a number, <code>name</code> is a string, <code>isStudent</code> is a boolean, <code>unknown</code> is null, and <code>x</code> is undefined because it has no assigned value.</p>
+
+  <p><strong>Example 2:</strong></p>
+  <pre><code>
+// Using Symbol and BigInt
+let sym = Symbol("id");
+let bigNumber = 9007199254740991n;
+
+console.log(typeof sym);       // "symbol"
+console.log(typeof bigNumber); // "bigint"
+  </code></pre>
+  <p><strong>Explanation:</strong> <code>Symbol</code> creates a unique identifier, useful for object keys. <code>BigInt</code> is for very large integers beyond the normal Number limits. Both have their own data types as shown by <code>typeof</code>.</p>
+</div>
+
+<!-- 4. Operators Section -->
+<div id="operatorsContent" class="content-section" >
+  <h3>Operators</h3>
+  <p>Operators are used to perform operations on variables and values.</p>
+  <ul>
+    <li>Arithmetic: +, -, *, /, %</li>
+    <li>Assignment: =, +=, -=</li>
+    <li>Comparison: ==, ===, !=, !==, &gt;, &lt;</li>
+    <li>Logical: &&, ||, !</li>
+  </ul>
+
+  <p><strong>Example 1:</strong></p>
+  <pre><code>
+let a = 10, b = 5;
+console.log(a + b);    // 15 (Addition)
+console.log(a % b);    // 0 (Remainder)
+console.log(a > b);    // true (Comparison)
+  </code></pre>
+  <p><strong>Explanation:</strong> Basic arithmetic and comparison operators used. <code>+</code> adds two numbers, <code>%</code> returns remainder, and <code>&gt;</code> compares if <code>a</code> is greater than <code>b</code>.</p>
+
+  <p><strong>Example 2:</strong></p>
+  <pre><code>
+let x = 5;
+x += 3;  // Equivalent to x = x + 3
+console.log(x); // 8
+
+console.log(true && false);  // false (Logical AND)
+console.log(!true);          // false (Logical NOT)
+  </code></pre>
+  <p><strong>Explanation:</strong> Assignment operators like <code>+=</code> simplify updating variables. Logical operators are used to combine boolean expressions: <code>&&</code> returns true only if both are true; <code>!</code> negates a boolean value.</p>
+</div>
+
+<!-- 5. Functions Section -->
+<div id="functionsContent" class="content-section" >
+  <h3>Functions</h3>
+  <p>Functions are blocks of code designed to perform a task.</p>
+  <p>They are reusable and help keep your code DRY (Don't Repeat Yourself).</p>
+
+  <p><strong>Example 1:</strong></p>
+  <pre><code>
+function greet(name) {
+  return "Hello " + name;
+}
+console.log(greet("Sam"));
+  </code></pre>
+  <p><strong>Explanation:</strong> This function takes a parameter <code>name</code> and returns a greeting string. Calling <code>greet("Sam")</code> outputs "Hello Sam". Functions help organize code into reusable pieces.</p>
+
+  <p><strong>Example 2 (Arrow Function):</strong></p>
+  <pre><code>
+const sum = (a, b) => a + b;
+console.log(sum(5, 3));  // 8
+  </code></pre>
+  <p><strong>Explanation:</strong> Arrow functions provide a shorter syntax for writing functions. Here, <code>sum</code> takes two parameters and returns their sum. Arrow functions are commonly used for simple functions or callbacks.</p>
+</div>
+
+<!-- 6. Events Section -->
+<div id="eventsContent" class="content-section" >
+  <h3>Events</h3>
+  <p>JavaScript can respond to user interactions with events like clicks, mouseovers, and keystrokes.</p>
+
+  <p><strong>Example 1:</strong></p>
+  <pre><code>
+document.getElementById("btn").addEventListener("click", function() {
+  alert("Button clicked!");
+});
+  </code></pre>
+  <p><strong>Explanation:</strong> This adds a click event listener to an element with ID "btn". When clicked, an alert box appears. Event listeners allow JavaScript to react to user actions.</p>
+
+  <p><strong>Example 2 (Keyboard Event):</strong></p>
+  <pre><code>
+document.addEventListener("keydown", function(event) {
+  console.log("Key pressed: " + event.key);
+});
+  </code></pre>
+  <p><strong>Explanation:</strong> This listens for any key pressed on the keyboard and logs the key value. Keyboard events help create interactive applications that respond to user input.</p>
+</div>
+
+<!-- 7. DOM Manipulation Section -->
+<div id="domContent" class="content-section" >
+  <h3>DOM Manipulation</h3>
+  <p>The DOM is a programming interface for HTML and XML documents.</p>
+  <p>You can access elements using <code>getElementById</code>, <code>querySelector</code>, etc.</p>
+
+  <p><strong>Example 1:</strong></p>
+  <pre><code>
+let heading = document.getElementById("title");
+heading.style.color = "blue";
+  </code></pre>
+  <p><strong>Explanation:</strong> Access the element with ID "title" and change its text color to blue. This shows how to style elements dynamically.</p>
+
+  <p><strong>Example 2 (Create and Append Element):</strong></p>
+  <pre><code>
+let newPara = document.createElement("p");
+newPara.textContent = "This is a new paragraph.";
+document.body.appendChild(newPara);
+  </code></pre>
+  <p><strong>Explanation:</strong> This code creates a new paragraph element, sets its text content, and appends it to the end of the document body. You can dynamically add elements to the page using DOM methods.</p>
+</div>
+
+<!-- 8. Loops Section -->
+<div id="loopsContent" class="content-section" >
+  <h3>Loops</h3>
+  <p>Loops are used to execute a block of code repeatedly.</p>
+  <p>Types of loops:</p>
+  <ul>
+    <li><code>for</code></li>
+    <li><code>while</code></li>
+    <li><code>do...while</code></li>
+    <li><code>forEach</code> (arrays)</li>
+  </ul>
+
+  <p><strong>Example 1 (For loop):</strong></p>
+  <pre><code>
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+  </code></pre>
+  <p><strong>Explanation:</strong> The <code>for</code> loop repeats the code block while the condition <code>i &lt; 5</code> is true. It logs numbers 0 to 4. Loops help automate repetitive tasks.</p>
+
+  <p><strong>Example 2 (While loop):</strong></p>
+  <pre><code>
+let count = 3;
+while (count > 0) {
+  console.log("Countdown: " + count);
+  count--;
+}
+  </code></pre>
+  <p><strong>Explanation:</strong> The <code>while</code> loop continues executing as long as <code>count</code> is greater than zero, decreasing <code>count</code> each time. It logs a countdown from 3 to 1.</p>
+</div>
+
+<!-- 9. Arrays Section -->
+<div id="arraysContent" class="content-section" >
+  <h3>Arrays</h3>
+  <p>Arrays hold multiple values in a single variable.</p>
+  <p>JavaScript arrays are zero-indexed and can hold any data type.</p>
+
+  <p><strong>Example 1:</strong></p>
+  <pre><code>
+let fruits = ["Apple", "Banana", "Cherry"];
+fruits.push("Mango");
+fruits.forEach(fruit => console.log(fruit));
+  </code></pre>
+  <p><strong>Explanation:</strong> This array stores fruit names. <code>push()</code> adds "Mango" at the end. <code>forEach()</code> loops through each fruit and logs it. Arrays help organize related data.</p>
+
+  <p><strong>Example 2 (Array Manipulation):</strong></p>
+  <pre><code>
+let numbers = [1, 2, 3, 4, 5];
+numbers.splice(2, 1);   // Removes 1 element at index 2
+console.log(numbers);   // [1, 2, 4, 5]
+  </code></pre>
+  <p><strong>Explanation:</strong> <code>splice()</code> removes one element at index 2 (which is 3). The array updates accordingly. This method helps add or remove elements from specific positions in an array.</p>
+</div>
+  </div>
+
+  <!-- Quiz Button -->
+  <div class="w3-container w3-margin-top">
+    <a href="#" class="w3-button w3-blue">Take the Quiz</a>
+  </div>
+
+</body>
+</html>

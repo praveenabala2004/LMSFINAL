@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Certificate - EduSpark</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500&display=swap');
+    
+    body {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f3ee;
+      background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 15px 40px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #8B6B4D;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .logo .spark {
+      color: #D4AF37;
+    }
+    .navbar-links {
+      font-size: 16px;
+      color: #555;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    /* Certificate Styling */
+    .certificate-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 85vh;
+      padding: 30px;
+    }
+
+    .certificate {
+      background: #fffdf7;
+      padding: 70px 60px;
+      width: 80%;
+      max-width: 900px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 20px solid transparent;
+      border-image: url('https://www.transparenttextures.com/patterns/golden.png') 30 round;
+    }
+
+    .certificate::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1px solid #D4AF37;
+      pointer-events: none;
+    }
+
+    .decorative-corner {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23D4AF37" d="M100,0 L100,40 C60,40 40,60 40,100 L0,100 L0,0 Z"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .top-left { top: 0; left: 0; transform: rotate(0deg); }
+    .top-right { top: 0; right: 0; transform: rotate(90deg); }
+    .bottom-left { bottom: 0; left: 0; transform: rotate(270deg); }
+    .bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
+
+    .university-name {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #8B6B4D;
+      letter-spacing: 3px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .university-name::after {
+      content: "";
+      display: block;
+      width: 150px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 15px auto;
+    }
+
+    .certificate-header {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 30px 0;
+      color: #5a3921;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      position: relative;
+    }
+
+    .certificate-header::before,
+    .certificate-header::after {
+      content: "✧";
+      color: #D4AF37;
+      margin: 0 20px;
+      font-size: 24px;
+    }
+
+    .presented-to {
+      font-size: 22px;
+      margin: 40px 0 10px;
+      color: #666;
+      font-style: italic;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .recipient-name {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 30px 0;
+      color: #5a3921;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 15px 0;
+      border-top: 2px solid #D4AF37;
+      border-bottom: 2px solid #D4AF37;
+      display: inline-block;
+    }
+
+    .certificate-text {
+      font-size: 20px;
+      line-height: 1.8;
+      margin: 40px auto;
+      max-width: 700px;
+      color: #555;
+    }
+
+    .completion-date {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #666;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .signature-container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 500px;
+      margin: 60px auto 0;
+    }
+
+    .signature {
+      text-align: center;
+      position: relative;
+    }
+
+    .signature-name {
+      font-weight: bold;
+      border-top: 1px solid #000;
+      display: inline-block;
+      padding-top: 5px;
+      min-width: 200px;
+      margin-top: 50px;
+    }
+
+    .signature-title {
+      font-size: 14px;
+      font-weight: normal;
+      color: #666;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 5px;
+    }
+
+    .signature-seal {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      background-color: #D4AF37;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 40px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .certificate-id {
+      margin-top: 40px;
+      font-size: 14px;
+      text-align: right;
+      color: #888;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .gold-underline {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+      margin: 20px auto;
+      width: 60%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <i class=""></i> <span>EduSpark</span> <span class="spark"></span>
+    </div>
+    <div class="navbar-links">
+      <i class="fas fa-user-graduate"></i> Student Portal
+    </div>
+  </div>
+
+  <!-- Certificate Section -->
+  <div class="certificate-container">
+    <div class="certificate">
+      <!-- Decorative corners -->
+      <div class="decorative-corner top-left"></div>
+      <div class="decorative-corner top-right"></div>
+      <div class="decorative-corner bottom-left"></div>
+      <div class="decorative-corner bottom-right"></div>
+
+      <div class="university-name">EduSpark</div>
+      
+      <div class="certificate-header">Certificate of Achievement</div>
+      
+      <div class="presented-to">This certificate is proudly presented to</div>
+      <div class="recipient-name">{{ student_name }}</div>
+      
+      <div class="certificate-text">
+        For successfully completing the course of <strong>{{ course_name }}</strong> with distinction.
+        <div class="gold-underline"></div>
+        In this comprehensive program, the recipient has demonstrated exceptional commitment
+        to mastering advanced concepts and techniques, showing remarkable dedication to professional
+        growth and excellence in the field.
+      </div>
+      
+      <div class="completion-date">Awarded this {{ completion_date }}</div>
+      
+      <div class="signature-container">
+        <div class="signature">
+          <div class="signature-seal">
+            <i class="fas fa-university"></i>
+          </div>
+          <div class="signature-name">{{ signatory_name }}</div>
+          <div class="signature-title">Graduate Director</div>
+        </div>
+      </div>
+      
+      <div class="certificate-id">
+        Certificate ID No.: {{ certificate_id }} | Authenticity can be verified at university.edu/verify
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

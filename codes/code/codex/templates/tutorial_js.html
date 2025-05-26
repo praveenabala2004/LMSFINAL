@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Tutorial</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #ccf2ff);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffffcc;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #FF6F91;
+    }
+
+    .logo .spark {
+      color: #4FC3F7;
+    }
+
+    .navbar-links {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .header {
+      padding: 20px;
+      background-color: #ffb6c1;
+      color: white;
+      text-align: center;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .timer {
+      font-size: 16px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .content-section {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .w3-button {
+      margin: 8px 4px 8px 0;
+      background-color: #FF6F91;
+      color: white;
+    }
+
+    .w3-button:hover {
+      background-color: #4FC3F7;
+    }
+
+    .question-section {
+      margin-top: 20px;
+    }
+
+    .question {
+      font-weight: bold;
+    }
+
+    .answer {
+      margin-left: 20px;
+    }
+  </style>
+  <script>
+    let minutes = 30;
+    let seconds = 0;
+
+    function updateTimer() {
+      if (seconds === 0 && minutes > 0) {
+        minutes--;
+        seconds = 59;
+      } else if (seconds > 0) {
+        seconds--;
+      }
+
+      let time = minutes < 10 ? '0' + minutes : minutes;
+      time += ":" + (seconds < 10 ? '0' + seconds : seconds);
+      document.getElementById("timer").innerHTML = "Time remaining: " + time;
+    }
+
+    setInterval(updateTimer, 1000);
+
+    function showContent(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo"> <span>EduSpark</span> <span class="spark"></span></div>
+    <div class="navbar-links">Student Portal</div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="header">
+    <h2>JavaScript Tutorial</h2>
+    <p>Learn how to make your web pages interactive and dynamic!</p>
+  </div>
+
+  
+
+  <!-- Timer -->
+  <div class="w3-container w3-right">
+    <div id="timer" class="timer">Time remaining: 30:00</div>
+  </div>
+
+  <!-- Buttons for Sections -->
+  <div class="w3-container">
+    <button class="w3-button w3-teal" onclick="showContent('introContent')">Introduction</button>
+    <button class="w3-button w3-teal" onclick="showContent('syntaxContent')">JS Syntax</button>
+    <button class="w3-button w3-teal" onclick="showContent('variablesContent')">Variables</button>
+    <button class="w3-button w3-teal" onclick="showContent('datatypesContent')">Data Types</button>
+    <button class="w3-button w3-teal" onclick="showContent('operatorsContent')">Operators</button>
+    <button class="w3-button w3-teal" onclick="showContent('functionsContent')">Functions</button>
+    <button class="w3-button w3-teal" onclick="showContent('eventsContent')">Events</button>
+    <button class="w3-button w3-teal" onclick="showContent('domContent')">DOM Manipulation</button>
+    <button class="w3-button w3-teal" onclick="showContent('loopsContent')">Loops</button>
+    <button class="w3-button w3-teal" onclick="showContent('arraysContent')">Arrays</button>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="w3-container">
+    <div id="introContent" class="content-section active">
+      <h3>Introduction</h3>
+      <p>JavaScript is the programming language of the web. Learn how it can make websites interactive.</p>
+      <div class="question-section">
+        <p class="question">Q1: What is JavaScript used for?</p>
+        <div class="answer">
+          <p>A: JavaScript is used to create interactive and dynamic web pages. It can be used for event handling, DOM manipulation, and more.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSIDE EACH SECTION (ADDED `forEach` EXAMPLES): -->
+
+<!-- 1. JS Syntax Section -->
+<div id="syntaxContent" class="content-section">
+  <h3>JS Syntax</h3>
+  <p>Understand how to write valid JavaScript statements, blocks, and scripts.</p>
+  <div class="question-section">
+    <p class="question">Q1: What is the correct syntax to declare a variable in JavaScript?</p>
+    <div class="answer">
+      <p>A: The correct syntax is <code>let variableName;</code>, <code>const variableName;</code> or <code>var variableName;</code>.</p>
+    </div>
+  </div>
+  <p>Example: Using <code>forEach()</code> to print numbers:</p>
+  <pre><code>
+const numbers = [1, 2, 3];
+numbers.forEach(function(num) {
+  console.log(num);
+});
+  </code></pre>
+</div>
+
+<!-- 2. Variables Section -->
+<div id="variablesContent" class="content-section">
+  <h3>Variables</h3>
+  <p>Learn how to declare variables using <code>var</code>, <code>let</code>, and <code>const</code>.</p>
+  <div class="question-section">
+    <p class="question">Q1: What is the difference between <code>let</code> and <code>const</code>?</p>
+    <div class="answer">
+      <p>A: <code>let</code> allows reassignment; <code>const</code> does not allow reassignment after declaration.</p>
+    </div>
+  </div>
+  <p>Example: Iterating over cities using <code>let</code> and <code>forEach()</code>:</p>
+  <pre><code>
+let cities = ['Paris', 'London', 'Tokyo'];
+cities.forEach(city => {
+  console.log('City:', city);
+});
+  </code></pre>
+</div>
+
+<!-- 3. Data Types Section -->
+<div id="datatypesContent" class="content-section">
+  <h3>Data Types</h3>
+  <p>JavaScript supports strings, numbers, booleans, objects, undefined, and more.</p>
+  <div class="question-section">
+    <p class="question">Q1: What are the primitive data types in JavaScript?</p>
+    <div class="answer">
+      <p>A: <code>String</code>, <code>Number</code>, <code>Boolean</code>, <code>Null</code>, <code>Undefined</code>, <code>Symbol</code>, and <code>BigInt</code>.</p>
+    </div>
+  </div>
+  <p>Example: Using <code>forEach()</code> to log data types:</p>
+  <pre><code>
+let mixed = [42, 'hello', true, null];
+mixed.forEach(item => {
+  console.log(typeof item, item);
+});
+  </code></pre>
+</div>
+
+<!-- 4. Operators Section -->
+<div id="operatorsContent" class="content-section">
+  <h3>Operators</h3>
+  <p>Explore arithmetic, assignment, comparison, and logical operators in JavaScript.</p>
+  <div class="question-section">
+    <p class="question">Q1: What is the difference between <code>==</code> and <code>===</code>?</p>
+    <div class="answer">
+      <p>A: <code>==</code> compares values only, while <code>===</code> compares both value and type.</p>
+    </div>
+  </div>
+  <p>Example: Summing numbers using <code>forEach()</code>:</p>
+  <pre><code>
+let values = [10, 20, 30];
+let total = 0;
+values.forEach(val => total += val);
+console.log('Total:', total);
+  </code></pre>
+</div>
+
+<!-- 5. Functions Section -->
+<div id="functionsContent" class="content-section">
+  <h3>Functions</h3>
+  <p>Learn to create and invoke functions to structure reusable code blocks.</p>
+  <div class="question-section">
+    <p class="question">Q1: How do you define a function in JavaScript?</p>
+    <div class="answer">
+      <p>A: Use <code>function functionName() { ... }</code> to define a function.</p>
+    </div>
+  </div>
+  <p>Example: Using a function with <code>forEach()</code>:</p>
+  <pre><code>
+function greet(name) {
+  console.log('Hello', name);
+}
+let names = ['Alice', 'Bob'];
+names.forEach(greet);
+  </code></pre>
+</div>
+
+<!-- 6. Events Section -->
+<div id="eventsContent" class="content-section">
+  <h3>Events</h3>
+  <p>Handle user interactions using event listeners.</p>
+  <div class="question-section">
+    <p class="question">Q1: How do you add a click event listener?</p>
+    <div class="answer">
+      <p>A: Use <code>element.addEventListener('click', function() { ... });</code></p>
+    </div>
+  </div>
+  <p>Example: Adding event listeners to multiple buttons:</p>
+  <pre><code>
+document.querySelectorAll('.myBtn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    alert('Button clicked!');
+  });
+});
+  </code></pre>
+</div>
+
+<!-- 7. DOM Manipulation Section -->
+<div id="domContent" class="content-section">
+  <h3>DOM Manipulation</h3>
+  <p>Use JavaScript to access and modify HTML elements.</p>
+  <div class="question-section">
+    <p class="question">Q1: How do you change the text content?</p>
+    <div class="answer">
+      <p>A: Use <code>element.textContent = "New text";</code></p>
+    </div>
+  </div>
+  <p>Example: Changing text for all items:</p>
+  <pre><code>
+document.querySelectorAll('.item').forEach(el => {
+  el.textContent = 'Updated!';
+});
+  </code></pre>
+</div>
+
+<!-- 8. Loops Section -->
+<div id="loopsContent" class="content-section">
+  <h3>Loops</h3>
+  <p>Repeat code using <code>for</code>, <code>while</code>, or <code>do...while</code> loops.</p>
+  <div class="question-section">
+    <p class="question">Q1: How does a <code>for</code> loop work?</p>
+    <div class="answer">
+      <p>A: <code>for (let i = 0; i < 5; i++) { ... }</code></p>
+    </div>
+  </div>
+  <p>Example: Using <code>forEach()</code> instead of a loop:</p>
+  <pre><code>
+const letters = ['a', 'b', 'c'];
+letters.forEach((letter, index) => {
+  console.log(`Index ${index}:`, letter);
+});
+  </code></pre>
+</div>
+
+<!-- 9. Arrays Section -->
+<div id="arraysContent" class="content-section">
+  <h3>Arrays</h3>
+  <p>Store multiple values in a single variable and work with them.</p>
+  <div class="question-section">
+    <p class="question">Q1: How do you declare an array?</p>
+    <div class="answer">
+      <p>A: <code>let arr = [1, 2, 3];</code></p>
+    </div>
+  </div>
+  <p>Example: Looping through arrays with <code>forEach()</code>:</p>
+  <pre><code>
+const animals = ['Cat', 'Dog', 'Elephant'];
+animals.forEach(animal => console.log(animal));
+  </code></pre>
+</div>
+<!-- Quiz Button -->
+  <div class="w3-container w3-margin-top">
+    <a href="#" class="w3-button w3-blue">Take the Quiz</a>
+  </div>
+  </div>
+</body>
+</html>
